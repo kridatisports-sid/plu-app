@@ -33,6 +33,16 @@ jobs:
       - name: Build web app
         run: npm run build
 
+      # ── 4a. Fix src folder name ───────────────────────────────
+      - name: Rename scr to src
+        run: |
+          if [ -d "scr" ] && [ ! -d "src" ]; then
+            mv scr src
+            echo "Renamed scr → src"
+          else
+            echo "src folder already exists, skipping"
+          fi
+
       # ── 5. Set up Java 17 (required by Gradle) ────────────────
       - name: Set up JDK 17
         uses: actions/setup-java@v4
