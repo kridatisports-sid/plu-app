@@ -6,8 +6,8 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     // Minify for smaller APK size
-    minify: 'terser',
-    terserOptions: {
+    minify: 'esbuild',
+    esbuildOptions: {
       compress: {
         drop_console: true,   // removes console.log in release build
       }
