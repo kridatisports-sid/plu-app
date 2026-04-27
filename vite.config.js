@@ -5,20 +5,16 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    // Minify for smaller APK size
     minify: 'esbuild',
-    esbuildOptions: {
-      drop: ['console'],
-    },
     rollupOptions: {
       output: {
-        // Code splitting for faster load
-        manualChunks: {
-          react: ['react', 'react-dom'],
+        manualChunks(id) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react'
+          }
         }
       }
     }
   },
-  // CRITICAL for Capacitor: must use relative paths, not /
   base: './',
 })
