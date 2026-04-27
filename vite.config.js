@@ -8,9 +8,7 @@ export default defineConfig({
     // Minify for smaller APK size
     minify: 'esbuild',
     esbuildOptions: {
-      compress: {
-        drop_console: true,   // removes console.log in release build
-      }
+      drop: ['console'],
     },
     rollupOptions: {
       output: {
